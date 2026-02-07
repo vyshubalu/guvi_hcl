@@ -1,4 +1,9 @@
 <?php
+// Suppress error output to prevent HTML in responses
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
 // MySQL Connection (for user registration data)
 $host = "localhost";
 $user = "root";
@@ -7,6 +12,7 @@ $db_name = "user_auth_db";
 
 $conn = new mysqli($host, $user, $pass, $db_name);
 if ($conn->connect_error) {
+    error_log("MySQL connection failed: " . $conn->connect_error);
     die("MySQL connection failed");
 }
 
